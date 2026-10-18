@@ -1,0 +1,15 @@
+services:
+  durga-website:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: durga-dussehra-website:local
+    container_name: durga-dussehra-website
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:8080/health"]
+      interval: 30s
+      timeout: 3s
+      retries: 3

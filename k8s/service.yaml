@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: durga-website
+  namespace: durga-website
+spec:
+  type: ClusterIP
+  selector:
+    app: durga-website
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8080

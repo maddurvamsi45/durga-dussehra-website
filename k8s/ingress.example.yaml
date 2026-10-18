@@ -1,0 +1,22 @@
+# Example only: install an Ingress controller and configure DNS/TLS before applying.
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: durga-website
+  namespace: durga-website
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts: [durga.example.com]
+      secretName: durga-website-tls
+  rules:
+    - host: durga.example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: durga-website
+                port:
+                  number: 80
